@@ -381,6 +381,28 @@ var SidebarObject = function ( editor ) {
 
 	container.add( objectUserDataRow );
 
+	//ALEX[[[
+	var showDetailRow = new UIRow();
+	var showDetailButton = new UIButton( 'ShowDetail' ).setWidth( '120px' ).onClick( function () {
+
+		if ( ( typeof ( editor.selected ) === 'undefined' ) || ( editor.selected === null ) )
+			return;
+
+		var halfAngle = Math.acos( editor.selected.quaternion.w );
+		var s = Math.sin( halfAngle );
+		var angle = halfAngle * 2;
+		var x = editor.selected.quaternion.x / s;
+		var y = editor.selected.quaternion.y / s;
+		var z = editor.selected.quaternion.z / s;
+
+		console.log( editor.selected.quaternion );
+		console.log( 'axis: ' + x + ', ' + y + ', ' + z + ' angle: ' + angle * 180 / Math.PI );
+
+	} );
+	showDetailRow.add( showDetailButton );
+	container.add( showDetailRow );
+	//]]]ALEX
+
 
 	//
 

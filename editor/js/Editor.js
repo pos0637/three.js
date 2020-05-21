@@ -117,6 +117,22 @@ var Editor = function () {
 
 	this.addCamera( this.camera );
 
+	//ALEX[[[
+	var worldAxes = new THREE.AxesHelper( 10 );
+	worldAxes.name = 'worldAxes';
+
+	//reset axes colors
+	var colors = worldAxes.geometry.attributes.color;
+
+	colors.setXYZ( 0, 1, 0, 0 ); // index, R, G, B
+	colors.setXYZ( 1, 1, 0, 0 ); // red
+	colors.setXYZ( 2, 0, 1, 0 );
+	colors.setXYZ( 3, 0, 1, 0 ); // green
+	colors.setXYZ( 4, 0, 0, 1 );
+	colors.setXYZ( 5, 0, 0, 1 ); // blue
+
+	this.scene.add( worldAxes );
+	//]]]ALEX
 };
 
 Editor.prototype = {
@@ -162,6 +178,10 @@ Editor.prototype = {
 			scope.addHelper( child );
 
 		} );
+
+		var axes = new THREE.AxesHelper( 2 );
+		axes.name = 'axes';
+		object.add( axes );
 
 		if ( parent === undefined ) {
 
